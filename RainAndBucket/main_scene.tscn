@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://bqb0kli3qwwge"]
+
+[ext_resource type="Texture2D" uid="uid://bkbs3ptslnmwm" path="res://bucket.png" id="1_spifs"]
+[ext_resource type="Script" path="res://MainScene.cs" id="1_t05x5"]
+[ext_resource type="AudioStream" uid="uid://0v0p1txfg5c6" path="res://waterdrop.wav" id="2_36ssc"]
+[ext_resource type="Script" path="res://Player.cs" id="2_ggu78"]
+[ext_resource type="AudioStream" uid="uid://cpn5oixqidm1a" path="res://rain.mp3" id="3_saiav"]
+[ext_resource type="PackedScene" uid="uid://cjde8qrolngl1" path="res://raindrop.tscn" id="6_bgx3j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ry7vg"]
+size = Vector2(62, 30.25)
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_t05x5")
+SpawnRate = 0.1
+
+[node name="Player" type="Area2D" parent="."]
+position = Vector2(248, 768)
+script = ExtResource("2_ggu78")
+metadata/_edit_group_ = true
+
+[node name="PlayerSprite" type="Sprite2D" parent="Player"]
+texture = ExtResource("1_spifs")
+
+[node name="PlayerCollides" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, -15.875)
+shape = SubResource("RectangleShape2D_ry7vg")
+
+[node name="DropCaughtAudio" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("2_36ssc")
+
+[node name="RainSounds" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_saiav")
+autoplay = true
+
+[node name="Raindrop" parent="." instance=ExtResource("6_bgx3j")]
+position = Vector2(230, -4)

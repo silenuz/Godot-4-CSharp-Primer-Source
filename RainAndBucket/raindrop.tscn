@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjde8qrolngl1"]
+
+[ext_resource type="Script" path="res://Raindrop.cs" id="1_2ykhk"]
+[ext_resource type="Texture2D" uid="uid://dqpqojs28dr35" path="res://droplet.png" id="1_t1tmm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_741go"]
+radius = 15.0
+height = 60.0
+
+[node name="Raindrop" type="Area2D"]
+script = ExtResource("1_2ykhk")
+
+[node name="RaindropSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_t1tmm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_741go")
